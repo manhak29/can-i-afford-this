@@ -1,26 +1,256 @@
-@import "tailwindcss";
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0f0f0f;
+  --card: #1a1a1a;
+  --border: #2a2a2a;
+  --text: #ffffff;
+  --muted: #a1a1aa;
+  --accent: #3b82f6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 32px;
+}
+
+h1 {
+  margin-bottom: 6px;
+}
+
+p {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #0f0f0f;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button.primary {
+  background: var(--accent);
+  color: white;
+}
+
+button.primary:hover {
+  opacity: 0.9;
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+button.secondary:hover {
+  background: #222;
+}
+
+.dashboard {
+  width: 100%;
+  max-width: 700px;
+  padding: 32px;
+}
+
+.section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.month {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background: #121212;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.month.warning {
+  border-color: #eab308;
+}
+
+.month.danger {
+  border-color: #ef4444;
+}
+
+.dot {
+  margin-left: 8px;
+  font-size: 18px;
+}
+
+.dot.green {
+  color: #22c55e;
+}
+
+.dot.yellow {
+  color: #eab308;
+}
+
+.dot.red {
+  color: #ef4444;
+}
+
+.dashboard {
+  width: 100%;
+  max-width: 900px;
+  padding: 32px;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.tabs button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.tabs button.active {
+  background: var(--accent);
+}
+
+.home-layout {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.status-circle {
+  text-align: center;
+}
+
+.circle {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  border: 10px solid;
+}
+
+.circle.green {
+  border-color: #22c55e;
+}
+
+.circle.yellow {
+  border-color: #eab308;
+}
+
+.circle.red {
+  border-color: #ef4444;
+}
+
+.home-inputs {
+  flex: 1;
+}
+
+.home-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.panel {
+  flex: 1;
+}
+
+.ring-container {
+  text-align: center;
+}
+
+.ring {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 12px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.ring.green { border-color: #22c55e; }
+.ring.yellow { border-color: #eab308; }
+.ring.red { border-color: #ef4444; }
+
+.breakdown {
+  margin-top: 16px;
+  color: var(--muted);
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.tabs button.active {
+  background: var(--accent);
 }
