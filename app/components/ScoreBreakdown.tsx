@@ -1,7 +1,7 @@
 export default function ScoreBreakdown() {
   return (
     <div className="section">
-      <h2>Score Breakdown</h2>
+      <h2>score-breakdown</h2>
       <div className="timeline">
         <div className="month">
           <span>Budget Discipline</span>

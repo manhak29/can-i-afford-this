@@ -22,7 +22,7 @@ export default function FinanceProjection({
 
   return (
     <div>
-      <h2>6 Month Projection</h2>
+      <h2>6-month-projection</h2>
       {months.map((amount, i) => (
         <p key={i}>
           Month {i + 1}: ${amount.toFixed(2)}

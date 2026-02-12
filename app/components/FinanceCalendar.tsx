@@ -24,13 +24,9 @@ export default function FinanceCalendar({
   const estimatedMonthlyBudget = Math.max(income - totalExpenses(budget), 0);
 
   const [selectedDate, setSelectedDate] = useState<DateValue>(new Date());
-  const [monthlyBudget, setMonthlyBudget] = useState<number>(estimatedMonthlyBudget);
+  const [monthlyBudget, setMonthlyBudget] = useState<string>("");
   const [spending, setSpending] = useState<Record<string, number>>({});
-  const [inputAmount, setInputAmount] = useState<number>(0);
-
-  useEffect(() => {
-    setMonthlyBudget(estimatedMonthlyBudget);
-  }, [estimatedMonthlyBudget]);
+  const [inputAmount, setInputAmount] = useState<string>("");
 
   const formatKey = (date: Date) => date.toISOString().split("T")[0];
 
@@ -45,23 +41,25 @@ export default function FinanceCalendar({
   };
 
   const handleAddSpending = () => {
-    if (!selectedDate || inputAmount <= 0) return;
+    const amountToAdd = Number(inputAmount);
+    if (!selectedDate || amountToAdd <= 0) return;
     const key = formatKey(selectedDate);
     setSpending((prev) => ({
       ...prev,
-      [key]: (prev[key] || 0) + inputAmount,
+      [key]: (prev[key] || 0) + amountToAdd,
     }));
-    setInputAmount(0);
+    setInputAmount("");
   };
 
   const totalSpent = useMemo(() => {
     return Object.values(spending).reduce((a, b) => a + b, 0);
   }, [spending]);
 
-  const remaining = monthlyBudget - totalSpent;
+  const activeMonthlyBudget = Number(monthlyBudget) || estimatedMonthlyBudget;
+  const remaining = activeMonthlyBudget - totalSpent;
   const percentUsed =
-    monthlyBudget > 0
-      ? Math.min((totalSpent / monthlyBudget) * 100, 100)
+    activeMonthlyBudget > 0
+      ? Math.min((totalSpent / activeMonthlyBudget) * 100, 100)
       : 0;
 
   const getDailyLimit = () => {
@@ -69,7 +67,7 @@ export default function FinanceCalendar({
     const year = today.getFullYear();
     const month = today.getMonth();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    return monthlyBudget / daysInMonth;
+    return activeMonthlyBudget / daysInMonth;
   };
 
   const dailyLimit = getDailyLimit();
@@ -94,22 +92,23 @@ export default function FinanceCalendar({
       </div>
 
       <div style={{ minWidth: "300px" }}>
-        <h2>Monthly Budget</h2>
+        <h2>monthly-budget</h2>
 
         <input
           type="number"
           value={monthlyBudget}
-          onChange={(e) => setMonthlyBudget(Number(e.target.value))}
+          onChange={(e) => setMonthlyBudget(e.target.value)}
+          placeholder="enter monthly spending budget"
           style={{ width: "100%", marginBottom: "10px" }}
         />
 
-        <h3>Add Spending</h3>
+        <h3>add-spending</h3>
 
         <input
           type="number"
           value={inputAmount}
-          onChange={(e) => setInputAmount(Number(e.target.value))}
-          placeholder="Amount"
+          onChange={(e) => setInputAmount(e.target.value)}
+          placeholder="enter spending amount for selected date"
           style={{ width: "100%", marginBottom: "10px" }}
         />
 
@@ -158,7 +157,7 @@ export default function FinanceCalendar({
             style={{
               width: `${percentUsed}%`,
               height: "100%",
-              background: totalSpent > monthlyBudget ? "red" : "#4caf50",
+              background: totalSpent > activeMonthlyBudget ? "red" : "#4caf50",
             }}
           />
         </div>
