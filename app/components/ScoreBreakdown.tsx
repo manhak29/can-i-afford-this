@@ -1,15 +1,21 @@
-import { ScoreBreakdown as Breakdown } from "../utils/finance";
-
-type Props = {
-  breakdown: Breakdown;
-};
-
-export default function ScoreBreakdown({ breakdown }: Props) {
+export default function ScoreBreakdown() {
   return (
-    <div className="breakdown">
-      <div>Cash Flow: {breakdown.cashFlow}%</div>
-      <div>Savings Buffer: {breakdown.savingsBuffer}%</div>
-      <div>Purchase Impact: {breakdown.purchaseImpact}%</div>
+    <div className="section">
+      <h2>Score Breakdown</h2>
+      <div className="timeline">
+        <div className="month">
+          <span>Budget Discipline</span>
+          <span className="dot green">● Excellent</span>
+        </div>
+        <div className="month warning">
+          <span>Savings Goal</span>
+          <span className="dot yellow">● Near Limit</span>
+        </div>
+        <div className="month">
+          <span>Fixed Expenses</span>
+          <span className="dot green">● Stable</span>
+        </div>
+      </div>
     </div>
   );
 }

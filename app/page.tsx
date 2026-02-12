@@ -5,22 +5,13 @@ import { useState } from "react";
 
 export default function Home() {
   const router = useRouter();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
-  async function handleLogin(): Promise<void> {
+  function handleLogin() {
     setLoading(true);
-
-    const res = await fetch("/api/login", {
-      method: "POST"
-    });
-
-    const data: { success: boolean } = await res.json();
-
-    if (data.success) {
+    setTimeout(() => {
       router.push("/welcome");
-    } else {
-      setLoading(false);
-    }
+    }, 800);
   }
 
   return (

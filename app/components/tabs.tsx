@@ -9,9 +9,26 @@ export default function Tabs() {
   return (
     <>
       <div className="tabs">
-        <button className={active === "home" ? "active" : ""} onClick={() => setActive("home")}>Home</button>
-        <button className={active === "goals" ? "active" : ""} onClick={() => setActive("goals")}>Goals</button>
-        <button className={active === "purchases" ? "active" : ""} onClick={() => setActive("purchases")}>Purchases</button>
+        <button
+          className={active === "home" ? "active" : ""}
+          onClick={() => setActive("home")}
+        >
+          Home
+        </button>
+
+        <button
+          className={active === "goals" ? "active" : ""}
+          onClick={() => setActive("goals")}
+        >
+          Goals
+        </button>
+
+        <button
+          className={active === "purchases" ? "active" : ""}
+          onClick={() => setActive("purchases")}
+        >
+          Purchases
+        </button>
       </div>
 
       {active === "home" && <HomeTab />}

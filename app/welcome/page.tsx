@@ -1,14 +1,12 @@
 "use client";
 
-import Tabs from "../components/tabs";
+import Tabs from "../components/Tabs";
 
 export default function Welcome() {
   return (
-    <main>
-      <div className="dashboard">
-        <h1>Dashboard</h1>
-        <Tabs />
-      </div>
+    <main className="dashboard">
+      <h1>Welcome</h1>
+      <Tabs />
     </main>
   );
 }
